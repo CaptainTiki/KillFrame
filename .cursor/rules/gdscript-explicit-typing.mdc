@@ -1,0 +1,17 @@
+---
+description: Enforce explicit GDScript typing and avoid := inference
+alwaysApply: true
+---
+
+# GDScript Explicit Typing
+
+- Strongly type variables, parameters, and return values where practical.
+- Do not use `:=` type inference in GDScript.
+- When a value is intentionally dynamic, type it explicitly as `Variant` (for example: `var data: Variant = source.get("data")`).
+- Prefer:
+  - `var count: int = 0`
+  - `var pos: Vector3 = Vector3.ZERO`
+  - `var payload: Variant = some_dynamic_value`
+- Avoid:
+  - `var count := 0`
+  - `var payload := some_dynamic_value`

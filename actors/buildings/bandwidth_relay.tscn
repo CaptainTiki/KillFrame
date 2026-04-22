@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4ikd6nui8rng"]
+
+[ext_resource type="Script" uid="uid://crredu3gh3l3e" path="res://actors/buildings/bandwidth_relay.gd" id="1_6kvc6"]
+[ext_resource type="Script" uid="uid://bpyp5xrt08eci" path="res://components/health_component.gd" id="2_h3nki"]
+[ext_resource type="Script" path="res://components/construction_component.gd" id="3_8v3p8"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_relay"]
+top_radius = 0.3
+bottom_radius = 0.45
+height = 1.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_relay"]
+albedo_color = Color(0.28, 0.18, 0.34, 1)
+metallic = 0.12
+roughness = 0.66
+
+[node name="BandwidthRelay" type="Node3D"]
+script = ExtResource("1_6kvc6")
+display_name = "Bandwidth Relay"
+structure_id = "bandwidth_relay"
+selection_radius = 0.8
+supply_bonus = 12
+
+[node name="Visual" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_relay")
+material_override = SubResource("StandardMaterial3D_relay")
+
+[node name="ConstructionComponent" type="Node" parent="."]
+script = ExtResource("3_8v3p8")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_h3nki")
+max_health = 35.0

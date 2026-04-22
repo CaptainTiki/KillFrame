@@ -1,0 +1,12 @@
+---
+description: Prevent generated UIDs in Godot scene/resource files
+globs: "**/*.{tscn,tres,gdshader}"
+alwaysApply: false
+---
+
+# Godot UID Policy
+
+- Do not generate or hand-write `uid="uid://..."` values in `gd_scene`, `gd_resource`, or `ext_resource` entries.
+- Prefer path-based references while editing (for example: `path="res://actors/units/engineer.gd"`).
+- Let Godot assign/update UIDs automatically when files are opened/saved in the editor.
+- If a file currently contains UIDs and they cause parse/load issues, remove the UIDs and keep valid path references.

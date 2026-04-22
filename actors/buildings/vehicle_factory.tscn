@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bbhhmqr5x6d4v"]
+
+[ext_resource type="Script" uid="uid://bijgjildewk5e" path="res://actors/buildings/vehicle_factory.gd" id="1_oh8o3"]
+[ext_resource type="Script" uid="uid://bpyp5xrt08eci" path="res://components/health_component.gd" id="2_u8v2i"]
+[ext_resource type="Script" uid="uid://bu32234n31pqk" path="res://components/construction_component.gd" id="3_1s63e"]
+[ext_resource type="Script" uid="uid://dxo8oxxlhdbw4" path="res://components/production_component.gd" id="4_y4jy4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_factory"]
+albedo_color = Color(0.22, 0.3, 0.24, 1)
+metallic = 0.09
+roughness = 0.72
+
+[sub_resource type="BoxMesh" id="BoxMesh_factory"]
+size = Vector3(3, 1.1, 2.2)
+
+[node name="VehicleFactory" type="Node3D" unique_id=1148197249]
+script = ExtResource("1_oh8o3")
+display_name = "Vehicle Factory"
+structure_id = "vehicle_factory"
+selection_radius = 1.8
+
+[node name="Visual" type="MeshInstance3D" parent="." unique_id=958514366]
+material_override = SubResource("StandardMaterial3D_factory")
+mesh = SubResource("BoxMesh_factory")
+
+[node name="SpawnAnchor" type="Marker3D" parent="." unique_id=73183598]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.7511649)
+
+[node name="ConstructionComponent" type="Node" parent="." unique_id=1546540727]
+script = ExtResource("3_1s63e")
+
+[node name="ProductionComponent" type="Node" parent="." unique_id=428458690]
+script = ExtResource("4_y4jy4")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=2016620589]
+script = ExtResource("2_u8v2i")
+max_health = 70.0

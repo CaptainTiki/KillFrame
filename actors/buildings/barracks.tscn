@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bifhmstj2clkg"]
+
+[ext_resource type="Script" uid="uid://d0vrtgxqhjivi" path="res://actors/buildings/barracks.gd" id="1_yimn0"]
+[ext_resource type="Script" uid="uid://bpyp5xrt08eci" path="res://components/health_component.gd" id="2_856wf"]
+[ext_resource type="Script" uid="uid://bu32234n31pqk" path="res://components/construction_component.gd" id="3_phxsg"]
+[ext_resource type="Script" uid="uid://dxo8oxxlhdbw4" path="res://components/production_component.gd" id="4_1bruh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_barracks"]
+albedo_color = Color(0.24, 0.22, 0.3, 1)
+metallic = 0.07
+roughness = 0.74
+
+[sub_resource type="BoxMesh" id="BoxMesh_barracks"]
+size = Vector3(2.5, 1.2, 2)
+
+[node name="Barracks" type="Node3D" unique_id=1837053122]
+script = ExtResource("1_yimn0")
+display_name = "Barracks"
+structure_id = "barracks"
+selection_radius = 1.55
+
+[node name="Visual" type="MeshInstance3D" parent="." unique_id=1391362403]
+material_override = SubResource("StandardMaterial3D_barracks")
+mesh = SubResource("BoxMesh_barracks")
+
+[node name="SpawnAnchor" type="Marker3D" parent="." unique_id=1333873007]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6080637)
+
+[node name="ConstructionComponent" type="Node" parent="." unique_id=580536837]
+script = ExtResource("3_phxsg")
+
+[node name="ProductionComponent" type="Node" parent="." unique_id=1069877017]
+script = ExtResource("4_1bruh")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=26041707]
+script = ExtResource("2_856wf")
+max_health = 50.0

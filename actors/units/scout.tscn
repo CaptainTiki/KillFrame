@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://dq2sudt5j3bk4"]
+
+[ext_resource type="Script" uid="uid://bhbpivb886f35" path="res://actors/units/scout.gd" id="1_hsak2"]
+[ext_resource type="Script" uid="uid://bpyp5xrt08eci" path="res://components/health_component.gd" id="2_o7fj3"]
+[ext_resource type="Script" uid="uid://c3dowun41qkiw" path="res://components/movement_component.gd" id="3_u6g3q"]
+[ext_resource type="Script" uid="uid://dmsvxhl6dsfr1" path="res://components/attack_component.gd" id="4_3v6yq"]
+[ext_resource type="Script" path="res://components/unit_actions_component.gd" id="5_yr94p"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_scout"]
+size = Vector3(0.9, 0.4, 1.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_scout"]
+albedo_color = Color(0.2, 0.28, 0.34, 1)
+metallic = 0.08
+roughness = 0.72
+
+[node name="Scout" type="Node3D"]
+script = ExtResource("1_hsak2")
+
+[node name="Visual" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_scout")
+material_override = SubResource("StandardMaterial3D_scout")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_o7fj3")
+max_health = 65.0
+
+[node name="UnitActions" type="Node" parent="."]
+script = ExtResource("5_yr94p")
+
+[node name="MovementComponent" type="Node" parent="."]
+script = ExtResource("3_u6g3q")
+speed = 5.2
+
+[node name="AttackComponent" type="Node" parent="."]
+script = ExtResource("4_3v6yq")
+damage = 14.0
+attack_interval = 0.8

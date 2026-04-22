@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dh20l2wxo3n8d"]
+
+[ext_resource type="Script" uid="uid://c7pqfg820hqy5" path="res://actors/buildings/hq.gd" id="1_e5x07"]
+[ext_resource type="Script" uid="uid://bpyp5xrt08eci" path="res://components/health_component.gd" id="2_fwoty"]
+[ext_resource type="Script" uid="uid://bu32234n31pqk" path="res://components/construction_component.gd" id="3_n7vt3"]
+[ext_resource type="Script" uid="uid://dxo8oxxlhdbw4" path="res://components/production_component.gd" id="4_7sbe4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hq"]
+albedo_color = Color(0.18, 0.26, 0.34, 1)
+metallic = 0.1
+roughness = 0.68
+
+[sub_resource type="BoxMesh" id="BoxMesh_placeholder"]
+size = Vector3(2, 1, 2)
+
+[node name="HQ" type="Node3D" unique_id=1572633425]
+script = ExtResource("1_e5x07")
+display_name = "HQ"
+structure_id = "hq"
+supply_bonus = 6
+
+[node name="Visual" type="MeshInstance3D" parent="." unique_id=1311524803]
+material_override = SubResource("StandardMaterial3D_hq")
+mesh = SubResource("BoxMesh_placeholder")
+
+[node name="SpawnAnchor" type="Marker3D" parent="." unique_id=1901957923]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6611369)
+
+[node name="ConstructionComponent" type="Node" parent="." unique_id=1846210831]
+script = ExtResource("3_n7vt3")
+
+[node name="ProductionComponent" type="Node" parent="." unique_id=179500203]
+script = ExtResource("4_7sbe4")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1001446944]
+script = ExtResource("2_fwoty")
+max_health = 150.0

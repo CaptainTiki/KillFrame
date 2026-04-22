@@ -1,0 +1,68 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://world/missions/hud.gd" id="1_wj54t"]
+[ext_resource type="PackedScene" path="res://world/missions/ui/resource_panel.tscn" id="2_v2s8y"]
+[ext_resource type="PackedScene" path="res://world/missions/ui/selection_panel.tscn" id="3_2wn7q"]
+[ext_resource type="PackedScene" path="res://world/missions/ui/action_panel.tscn" id="4_x7dr4"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_wj54t")
+
+[node name="SelectionBox" type="ColorRect" parent="."]
+visible = false
+mouse_filter = 2
+color = Color(0.2, 0.75, 1, 0.18)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 720.0
+offset_bottom = 152.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Mission 01: Establish The Firewall"
+
+[node name="StatusLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Initializing..."
+
+[node name="HintLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Left click to select. Right click to move, harvest, or attack."
+
+[node name="CommandPanel" type="PanelContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -252.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CommandPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CommandPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ResourcePanel" parent="CommandPanel/MarginContainer/HBoxContainer" instance=ExtResource("2_v2s8y")]
+layout_mode = 2
+
+[node name="SelectionPanel" parent="CommandPanel/MarginContainer/HBoxContainer" instance=ExtResource("3_2wn7q")]
+layout_mode = 2
+
+[node name="ActionPanel" parent="CommandPanel/MarginContainer/HBoxContainer" instance=ExtResource("4_x7dr4")]
+layout_mode = 2

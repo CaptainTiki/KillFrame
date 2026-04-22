@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dblj06u7mqhy2"]
+
+[ext_resource type="Script" uid="uid://c3bj78x3yqc8e" path="res://actors/units/rifle_infantry.gd" id="1_87ev7"]
+[ext_resource type="Script" uid="uid://bpyp5xrt08eci" path="res://components/health_component.gd" id="2_h0d5s"]
+[ext_resource type="Script" uid="uid://c3dowun41qkiw" path="res://components/movement_component.gd" id="3_ktw3g"]
+[ext_resource type="Script" uid="uid://dmsvxhl6dsfr1" path="res://components/attack_component.gd" id="4_x5m3o"]
+[ext_resource type="Script" path="res://components/unit_actions_component.gd" id="5_24s1c"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rifle"]
+radius = 0.24
+mid_height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rifle"]
+albedo_color = Color(0.3, 0.35, 0.42, 1)
+metallic = 0.06
+roughness = 0.76
+
+[node name="RifleInfantry" type="Node3D"]
+script = ExtResource("1_87ev7")
+
+[node name="Visual" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_rifle")
+material_override = SubResource("StandardMaterial3D_rifle")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_h0d5s")
+max_health = 80.0
+
+[node name="UnitActions" type="Node" parent="."]
+script = ExtResource("5_24s1c")
+
+[node name="MovementComponent" type="Node" parent="."]
+script = ExtResource("3_ktw3g")
+speed = 4.2
+
+[node name="AttackComponent" type="Node" parent="."]
+script = ExtResource("4_x5m3o")
+damage = 10.0
+attack_interval = 0.55

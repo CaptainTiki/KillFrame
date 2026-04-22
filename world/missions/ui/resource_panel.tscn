@@ -1,0 +1,58 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://world/missions/ui/resource_panel.gd" id="1_h1o92"]
+
+[node name="ResourcePanel" type="PanelContainer"]
+custom_minimum_size = Vector2(250, 0)
+script = ExtResource("1_h1o92")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MiniMapTitle" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Tactical Feed"
+
+[node name="MiniMapStub" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 138)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MiniMapStub"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MiniMapStub/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="MiniMapStubLabel" type="Label" parent="MarginContainer/VBoxContainer/MiniMapStub/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "MINIMAP"
+horizontal_alignment = 1
+
+[node name="MiniMapStubSubLabel" type="Label" parent="MarginContainer/VBoxContainer/MiniMapStub/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Stub online.\nRadar view next pass."
+horizontal_alignment = 1
+
+[node name="ResourceLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Crystals: 0   Bits: 0"
+
+[node name="SupplyLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Supply: 0 / 0"
