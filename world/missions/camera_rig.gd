@@ -2,14 +2,17 @@ extends Node3D
 class_name MissionCameraRig
 
 const GROUND_PLANE: Plane = Plane(Vector3.UP, 0.0)
-const CAMERA_MIN_X: float = -16.0
-const CAMERA_MAX_X: float = 16.0
-const CAMERA_MIN_Z: float = -12.0
-const CAMERA_MAX_Z: float = 18.0
 
 @export var camera_move_speed: float = 14.0
+@export var movement_bounds_padding: Vector2 = Vector2.ZERO
 
 @onready var _camera: Camera3D = $Camera3D as Camera3D
+
+var _movement_bounds_enabled: bool = false
+var _camera_min_x: float = 0.0
+var _camera_max_x: float = 0.0
+var _camera_min_z: float = 0.0
+var _camera_max_z: float = 0.0
 
 
 func _process(delta: float) -> void:
@@ -18,6 +21,30 @@ func _process(delta: float) -> void:
 
 func get_camera() -> Camera3D:
 	return _camera
+
+
+func configure_from_terrain(terrain_manager: TerrainManager) -> void:
+	var bounds: Dictionary = terrain_manager.get_world_bounds_2d()
+	if not bool(bounds.get("valid", false)):
+		clear_movement_bounds()
+		return
+
+	var min_bounds: Vector2 = bounds.get("min", Vector2.ZERO) as Vector2
+	var max_bounds: Vector2 = bounds.get("max", Vector2.ZERO) as Vector2
+	set_movement_bounds(min_bounds.x, max_bounds.x, min_bounds.y, max_bounds.y)
+
+
+func set_movement_bounds(min_x: float, max_x: float, min_z: float, max_z: float) -> void:
+	_movement_bounds_enabled = true
+	_camera_min_x = minf(min_x, max_x) - movement_bounds_padding.x
+	_camera_max_x = maxf(min_x, max_x) + movement_bounds_padding.x
+	_camera_min_z = minf(min_z, max_z) - movement_bounds_padding.y
+	_camera_max_z = maxf(min_z, max_z) + movement_bounds_padding.y
+	_clamp_position_to_bounds()
+
+
+func clear_movement_bounds() -> void:
+	_movement_bounds_enabled = false
 
 
 func get_mouse_ground_position() -> Variant:
@@ -78,6 +105,15 @@ func _update_camera_movement(delta: float) -> void:
 	var next_position: Vector3 = position
 	next_position.x += input_vector.x * camera_move_speed * delta
 	next_position.z += input_vector.y * camera_move_speed * delta
-	next_position.x = clampf(next_position.x, CAMERA_MIN_X, CAMERA_MAX_X)
-	next_position.z = clampf(next_position.z, CAMERA_MIN_Z, CAMERA_MAX_Z)
+	if _movement_bounds_enabled:
+		next_position.x = clampf(next_position.x, _camera_min_x, _camera_max_x)
+		next_position.z = clampf(next_position.z, _camera_min_z, _camera_max_z)
 	position = next_position
+
+
+func _clamp_position_to_bounds() -> void:
+	if not _movement_bounds_enabled:
+		return
+
+	position.x = clampf(position.x, _camera_min_x, _camera_max_x)
+	position.z = clampf(position.z, _camera_min_z, _camera_max_z)

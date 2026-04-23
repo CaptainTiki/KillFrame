@@ -1,0 +1,9 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://dmxa3rkmktdrl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_is8rw"]
+cull_mode = 2
+albedo_color = Color(0.38, 0.68, 0.16, 1)
+roughness = 0.86
+
+[resource]
+material = SubResource("StandardMaterial3D_is8rw")

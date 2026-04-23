@@ -4,7 +4,7 @@ class_name MissionPlacementController
 signal status_message_requested(text: String)
 signal placement_state_changed(active: bool, structure_id: String, builder: Node3D)
 
-const BUILD_GRID_SIZE: float = 2.0
+const BUILD_GRID_SIZE: float = 1.0
 const HUD_ACCENT: Color = Color(0.18, 0.87, 1.0, 1.0)
 const HUD_INVALID: Color = Color(1.0, 0.3, 0.32, 1.0)
 

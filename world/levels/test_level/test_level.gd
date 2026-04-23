@@ -1,5 +1,5 @@
-@tool
 extends Level
+class_name TestLevel
 
 @onready var _economy: MissionEconomy = $MissionEconomy as MissionEconomy
 @onready var _selection_controller: MissionSelectionController = $SelectionController as MissionSelectionController

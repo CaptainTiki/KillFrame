@@ -1,9 +1,0 @@
-[gd_resource type="PrismMesh" format=3 uid="uid://ceob537y54grm"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r6g1o"]
-albedo_color = Color(0.36, 0.52, 0.44, 1)
-
-[resource]
-material = SubResource("StandardMaterial3D_r6g1o")
-left_to_right = 0.0
-size = Vector3(1, 2, 1)
