@@ -1,0 +1,36 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://world/terrain/terrain_manager/terrain_manager.gd" id="1_g7cpu"]
+[ext_resource type="MeshLibrary" path="res://world/terrain/terrain_meshes/terrain_mesh_library.tres" id="2_8gl0x"]
+[ext_resource type="Script" path="res://world/terrain/terrain_debug/terrain_debug_overlay.gd" id="3_lmwid"]
+[ext_resource type="PackedScene" path="res://world/terrain/terrain_debug/terrain_debug_marker.tscn" id="4_xov0k"]
+[ext_resource type="Script" path="res://world/terrain/terrain_nav/terrain_nav_debug.gd" id="5_3ej0r"]
+
+[node name="TerrainManager" type="Node3D"]
+script = ExtResource("1_g7cpu")
+
+[node name="GM_Surface" type="GridMap" parent="."]
+cell_size = Vector3(1, 2, 1)
+mesh_library = ExtResource("2_8gl0x")
+
+[node name="GM_Cliffs" type="GridMap" parent="."]
+cell_size = Vector3(1, 2, 1)
+mesh_library = ExtResource("2_8gl0x")
+
+[node name="GM_Ramps" type="GridMap" parent="."]
+cell_size = Vector3(1, 2, 1)
+mesh_library = ExtResource("2_8gl0x")
+
+[node name="GM_Blockers" type="GridMap" parent="."]
+cell_size = Vector3(1, 2, 1)
+mesh_library = ExtResource("2_8gl0x")
+
+[node name="DebugLayers" type="Node3D" parent="."]
+
+[node name="TerrainDebugOverlay" type="Node3D" parent="DebugLayers"]
+script = ExtResource("3_lmwid")
+
+[node name="InspectMarker" parent="DebugLayers" instance=ExtResource("4_xov0k")]
+
+[node name="TerrainNavDebug" type="Node3D" parent="DebugLayers"]
+script = ExtResource("5_3ej0r")

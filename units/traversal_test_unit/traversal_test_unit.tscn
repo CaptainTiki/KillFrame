@@ -1,0 +1,20 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://units/traversal_test_unit/traversal_test_unit.gd" id="1_mnr4u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21x4e"]
+albedo_color = Color(0.16, 0.68, 1, 1)
+metallic = 0.05
+roughness = 0.72
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_40n4t"]
+material = SubResource("StandardMaterial3D_21x4e")
+radius = 0.28
+mid_height = 0.6
+
+[node name="TraversalTestUnit" type="Node3D"]
+script = ExtResource("1_mnr4u")
+
+[node name="Visual" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.6, 0)
+mesh = SubResource("CapsuleMesh_40n4t")

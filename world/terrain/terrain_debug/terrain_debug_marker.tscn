@@ -1,0 +1,20 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://world/terrain/terrain_debug/terrain_debug_marker.gd" id="1_1xtsk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3m6na"]
+transparency = 1
+shading_mode = 0
+cull_mode = 2
+albedo_color = Color(0.15, 0.95, 1, 0.45)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0p6ne"]
+material = SubResource("StandardMaterial3D_3m6na")
+size = Vector3(1, 0.06, 1)
+
+[node name="TerrainDebugMarker" type="MeshInstance3D"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_0p6ne")
+material_override = SubResource("StandardMaterial3D_3m6na")
+script = ExtResource("1_1xtsk")
+visible = false

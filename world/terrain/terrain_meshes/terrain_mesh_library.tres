@@ -1,0 +1,132 @@
+[gd_resource type="MeshLibrary" format=3]
+
+[ext_resource type="BoxMesh" path="res://world/terrain/terrain_meshes/meshes/ground_flat_1x1.tres" id="1"]
+[ext_resource type="BoxMesh" path="res://world/terrain/terrain_meshes/meshes/ground_flat_1x1_var_a.tres" id="2"]
+[ext_resource type="BoxMesh" path="res://world/terrain/terrain_meshes/meshes/ramp_top_cap_1x1.tres" id="3"]
+[ext_resource type="BoxMesh" path="res://world/terrain/terrain_meshes/meshes/ramp_bottom_cap_1x1.tres" id="4"]
+[ext_resource type="BoxMesh" path="res://world/terrain/terrain_meshes/meshes/ramp_side_filler_1x1.tres" id="5"]
+[ext_resource type="BoxMesh" path="res://world/terrain/terrain_meshes/meshes/blocker_rock_1x1.tres" id="6"]
+[ext_resource type="BoxMesh" path="res://world/terrain/terrain_meshes/meshes/blocker_wreck_1x2.tres" id="7"]
+[ext_resource type="BoxMesh" path="res://world/terrain/terrain_meshes/meshes/blocker_large_2x2.tres" id="8"]
+[ext_resource type="BoxMesh" path="res://world/terrain/terrain_meshes/meshes/ground_flat_1x1_var_b.tres" id="9"]
+[ext_resource type="BoxMesh" path="res://world/terrain/terrain_meshes/meshes/cliff_lip_straight_1x1.tres" id="10"]
+[ext_resource type="BoxMesh" path="res://world/terrain/terrain_meshes/meshes/cliff_lip_outer_corner_1x1.tres" id="11"]
+[ext_resource type="BoxMesh" path="res://world/terrain/terrain_meshes/meshes/cliff_lip_inner_corner_1x1.tres" id="12"]
+[ext_resource type="BoxMesh" path="res://world/terrain/terrain_meshes/meshes/cliff_wall_straight_1x1.tres" id="13"]
+[ext_resource type="BoxMesh" path="res://world/terrain/terrain_meshes/meshes/cliff_wall_outer_corner_1x1.tres" id="14"]
+[ext_resource type="BoxMesh" path="res://world/terrain/terrain_meshes/meshes/cliff_wall_inner_corner_1x1.tres" id="15"]
+[ext_resource type="PrismMesh" path="res://world/terrain/terrain_meshes/meshes/ramp_up_1x1.tres" id="16"]
+
+[resource]
+item/0/name = "ground_flat_1x1"
+item/0/mesh = ExtResource("1")
+item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/mesh_cast_shadow = 1
+item/0/shapes = []
+item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/navigation_layers = 1
+item/1/name = "ground_flat_1x1_var_a"
+item/1/mesh = ExtResource("2")
+item/1/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/mesh_cast_shadow = 1
+item/1/shapes = []
+item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/navigation_layers = 1
+item/2/name = "ground_flat_1x1_var_b"
+item/2/mesh = ExtResource("9")
+item/2/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/2/mesh_cast_shadow = 1
+item/2/shapes = []
+item/2/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/2/navigation_layers = 1
+item/3/name = "cliff_lip_straight_1x1"
+item/3/mesh = ExtResource("10")
+item/3/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.41)
+item/3/mesh_cast_shadow = 1
+item/3/shapes = []
+item/3/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/3/navigation_layers = 1
+item/4/name = "cliff_lip_outer_corner_1x1"
+item/4/mesh = ExtResource("11")
+item/4/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.41, 0, -0.41)
+item/4/mesh_cast_shadow = 1
+item/4/shapes = []
+item/4/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/4/navigation_layers = 1
+item/5/name = "cliff_lip_inner_corner_1x1"
+item/5/mesh = ExtResource("12")
+item/5/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/5/mesh_cast_shadow = 1
+item/5/shapes = []
+item/5/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/5/navigation_layers = 1
+item/6/name = "cliff_wall_straight_1x1"
+item/6/mesh = ExtResource("13")
+item/6/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.41)
+item/6/mesh_cast_shadow = 1
+item/6/shapes = []
+item/6/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/6/navigation_layers = 1
+item/7/name = "cliff_wall_outer_corner_1x1"
+item/7/mesh = ExtResource("14")
+item/7/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.41, 1, -0.41)
+item/7/mesh_cast_shadow = 1
+item/7/shapes = []
+item/7/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/7/navigation_layers = 1
+item/8/name = "cliff_wall_inner_corner_1x1"
+item/8/mesh = ExtResource("15")
+item/8/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+item/8/mesh_cast_shadow = 1
+item/8/shapes = []
+item/8/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/8/navigation_layers = 1
+item/9/name = "ramp_up_1x1"
+item/9/mesh = ExtResource("16")
+item/9/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+item/9/mesh_cast_shadow = 1
+item/9/shapes = []
+item/9/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/9/navigation_layers = 1
+item/10/name = "ramp_top_cap_1x1"
+item/10/mesh = ExtResource("3")
+item/10/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.38)
+item/10/mesh_cast_shadow = 1
+item/10/shapes = []
+item/10/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/10/navigation_layers = 1
+item/11/name = "ramp_bottom_cap_1x1"
+item/11/mesh = ExtResource("4")
+item/11/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0.38)
+item/11/mesh_cast_shadow = 1
+item/11/shapes = []
+item/11/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/11/navigation_layers = 1
+item/12/name = "ramp_side_filler_1x1"
+item/12/mesh = ExtResource("5")
+item/12/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.41, -1, 0)
+item/12/mesh_cast_shadow = 1
+item/12/shapes = []
+item/12/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/12/navigation_layers = 1
+item/13/name = "blocker_rock_1x1"
+item/13/mesh = ExtResource("6")
+item/13/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+item/13/mesh_cast_shadow = 1
+item/13/shapes = []
+item/13/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/13/navigation_layers = 1
+item/14/name = "blocker_wreck_1x2"
+item/14/mesh = ExtResource("7")
+item/14/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37, 0)
+item/14/mesh_cast_shadow = 1
+item/14/shapes = []
+item/14/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/14/navigation_layers = 1
+item/15/name = "blocker_large_2x2"
+item/15/mesh = ExtResource("8")
+item/15/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+item/15/mesh_cast_shadow = 1
+item/15/shapes = []
+item/15/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/15/navigation_layers = 1
