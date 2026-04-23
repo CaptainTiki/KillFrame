@@ -5,6 +5,8 @@ const TerrainDefs = preload("res://world/terrain/terrain_data/terrain_defs.gd")
 
 var width: int = 0
 var height: int = 0
+var origin_x: int = 0
+var origin_z: int = 0
 var cells: Array[TerrainCell] = []
 
 
@@ -16,11 +18,22 @@ func _init(map_width: int = 0, map_height: int = 0) -> void:
 func initialize(map_width: int, map_height: int) -> void:
 	width = max(map_width, 0)
 	height = max(map_height, 0)
+	origin_x = 0
+	origin_z = 0
 	cells.clear()
 	cells.resize(width * height)
 
 	for index: int in range(cells.size()):
 		cells[index] = TerrainCell.new()
+
+
+func set_origin(grid_origin_x: int, grid_origin_z: int) -> void:
+	origin_x = grid_origin_x
+	origin_z = grid_origin_z
+
+
+func get_grid_coords(x: int, z: int) -> Vector2i:
+	return Vector2i(origin_x + x, origin_z + z)
 
 
 func in_bounds(x: int, z: int) -> bool:

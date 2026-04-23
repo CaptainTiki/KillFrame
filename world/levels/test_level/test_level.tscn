@@ -1,0 +1,154 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://world/levels/test_level/test_level.gd" id="1_testlv"]
+[ext_resource type="PackedScene" uid="uid://ctm3i4o10e0kg" path="res://actors/units/engineer.tscn" id="2_eng"]
+[ext_resource type="Script" uid="uid://r361xdoqiysw" path="res://world/missions/mission_controller.gd" id="3_mc"]
+[ext_resource type="PackedScene" uid="uid://d1ynwlxwvyj7c" path="res://actors/units/worker.tscn" id="4_wkr"]
+[ext_resource type="PackedScene" uid="uid://dblj06u7mqhy2" path="res://actors/units/rifle_infantry.tscn" id="5_rfl"]
+[ext_resource type="PackedScene" uid="uid://dq2sudt5j3bk4" path="res://actors/units/scout.tscn" id="6_sct"]
+[ext_resource type="Script" uid="uid://cbpc1v2l3amq8" path="res://system/mission_economy.gd" id="7_eco"]
+[ext_resource type="PackedScene" path="res://world/resources/resource_node.tscn" id="8_res"]
+[ext_resource type="Script" uid="uid://bpyp5xrt08eci" path="res://components/health_component.gd" id="9_hp"]
+[ext_resource type="Script" path="res://world/missions/camera_rig.gd" id="10_cam"]
+[ext_resource type="Script" path="res://world/missions/selection_controller.gd" id="11_sel"]
+[ext_resource type="Script" path="res://world/missions/order_controller.gd" id="12_ord"]
+[ext_resource type="Script" path="res://world/missions/placement_controller.gd" id="13_plc"]
+[ext_resource type="PackedScene" path="res://world/missions/hud.tscn" id="14_hud"]
+[ext_resource type="PackedScene" path="res://world/terrain/terrain_manager/terrain_manager.tscn" id="15_tm"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_1"]
+sky_material = SubResource("ProceduralSkyMaterial_1")
+
+[sub_resource type="Environment" id="Environment_1"]
+background_mode = 2
+sky = SubResource("Sky_1")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_enemy"]
+albedo_color = Color(0.58, 0.2, 0.24, 1)
+metallic = 0.15
+roughness = 0.62
+emission_enabled = true
+emission = Color(0.4, 0.08, 0.12, 1)
+emission_energy_multiplier = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_enemy"]
+size = Vector3(2.2, 2.2, 2.2)
+
+[node name="TestLevel" type="Node3D"]
+script = ExtResource("1_testlv")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="TerrainManager" parent="." instance=ExtResource("15_tm")]
+
+[node name="MissionController" type="Node" parent="."]
+script = ExtResource("3_mc")
+
+[node name="MissionEconomy" type="Node" parent="."]
+script = ExtResource("7_eco")
+
+[node name="PlayerBuildSlots" type="Node3D" parent="."]
+
+[node name="BarracksSlot" type="Node3D" parent="PlayerBuildSlots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 32)
+
+[node name="VehicleFactorySlot" type="Node3D" parent="PlayerBuildSlots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 32)
+
+[node name="RelaySlotA" type="Node3D" parent="PlayerBuildSlots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 26)
+
+[node name="RelaySlotB" type="Node3D" parent="PlayerBuildSlots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0, 26)
+
+[node name="PlayerStart" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, 26)
+
+[node name="Engineer" parent="PlayerStart" instance=ExtResource("2_eng")]
+
+[node name="WorkerStart" parent="PlayerStart" instance=ExtResource("4_wkr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 2)
+
+[node name="RifleStart" parent="PlayerStart" instance=ExtResource("5_rfl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="ScoutStart" parent="PlayerStart" instance=ExtResource("6_sct")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 2)
+
+[node name="ResourceField" type="Node3D" parent="."]
+
+[node name="CrystalNodeA" parent="ResourceField" instance=ExtResource("8_res")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 18)
+max_amount = 140
+
+[node name="CrystalNodeB" parent="ResourceField" instance=ExtResource("8_res")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, 18)
+max_amount = 140
+
+[node name="BitNodeMid" parent="ResourceField" instance=ExtResource("8_res")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, 14)
+resource_type = "bits"
+max_amount = 100
+
+[node name="BitNodeFar" parent="ResourceField" instance=ExtResource("8_res")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, 14)
+resource_type = "bits"
+max_amount = 100
+
+[node name="EnemyCore" type="Node3D" parent="." groups=["enemy_targets"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62, 0, 82)
+
+[node name="Visual" type="MeshInstance3D" parent="EnemyCore"]
+material_override = SubResource("StandardMaterial3D_enemy")
+mesh = SubResource("BoxMesh_enemy")
+
+[node name="HealthComponent" type="Node" parent="EnemyCore"]
+script = ExtResource("9_hp")
+max_health = 450.0
+
+[node name="EnemySpawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62, 0, 82)
+
+[node name="EnemyRifleA" parent="EnemySpawn" instance=ExtResource("5_rfl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8, 0, 2)
+display_name = "EnemyRifleA"
+team = "enemy"
+
+[node name="EnemyRifleB" parent="EnemySpawn" instance=ExtResource("5_rfl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8, 0, 2)
+display_name = "EnemyRifleB"
+team = "enemy"
+
+[node name="EnemyScout" parent="EnemySpawn" instance=ExtResource("6_sct")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.4)
+display_name = "EnemyScout"
+team = "enemy"
+
+[node name="CameraRig" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, 26)
+script = ExtResource("10_cam")
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig"]
+transform = Transform3D(1, 0, 0, 0, 0.9066689, 0.42184302, 0, -0.42184302, 0.9066689, 0, 6.2675114, 8.39397)
+
+[node name="SelectionController" type="Node" parent="."]
+script = ExtResource("11_sel")
+
+[node name="OrderController" type="Node" parent="."]
+script = ExtResource("12_ord")
+
+[node name="PlacementController" type="Node" parent="."]
+script = ExtResource("13_plc")
+
+[node name="HUD" parent="." instance=ExtResource("14_hud")]

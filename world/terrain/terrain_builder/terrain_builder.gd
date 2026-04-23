@@ -141,11 +141,12 @@ func build_blockers(map_data: TerrainMapData, gridmaps: Dictionary) -> void:
 
 
 func _get_gridmaps(terrain_root: Node3D) -> Dictionary:
+	var gm: GridMap = terrain_root.get_node("GM_Terrain") as GridMap
 	return {
-		"surface": terrain_root.get_node("GM_Surface") as GridMap,
-		"cliffs": terrain_root.get_node("GM_Cliffs") as GridMap,
-		"ramps": terrain_root.get_node("GM_Ramps") as GridMap,
-		"blockers": terrain_root.get_node("GM_Blockers") as GridMap,
+		"surface": gm,
+		"cliffs": gm,
+		"ramps": gm,
+		"blockers": gm,
 	}
 
 
