@@ -5,10 +5,12 @@ var _actions: Dictionary = {}
 var _action_order: Array[String] = []
 var _current_action_id: String = ""
 var _economy: MissionEconomy = null
+var _terrain_manager: TerrainManager = null
 
 
 func _ready() -> void:
 	_cache_economy()
+	_cache_terrain_manager()
 
 
 func register_action(action: BaseAction) -> void:
@@ -64,7 +66,19 @@ func process_actions(delta: float) -> void:
 
 
 func issue_move(target: Vector3) -> bool:
-	return _issue_action("move", {"target": target})
+	var payload: Dictionary = {"target": target}
+	var path_result: Dictionary = _request_move_path(target)
+	if path_result.get("success", false):
+		var world_points: Array[Vector3] = []
+		for point_variant: Variant in path_result.get("world_points", []):
+			if point_variant is Vector3:
+				world_points.append(point_variant as Vector3)
+
+		if not world_points.is_empty():
+			payload["path_points"] = world_points
+			payload["target"] = world_points[world_points.size() - 1]
+
+	return _issue_action("move", payload)
 
 
 func issue_attack(target: Node3D) -> bool:
@@ -112,6 +126,12 @@ func get_economy() -> MissionEconomy:
 	if _economy == null:
 		_cache_economy()
 	return _economy
+
+
+func get_terrain_manager() -> TerrainManager:
+	if _terrain_manager == null or not is_instance_valid(_terrain_manager):
+		_cache_terrain_manager()
+	return _terrain_manager
 
 
 func get_team() -> String:
@@ -241,9 +261,26 @@ func _get_action(action_id: String) -> BaseAction:
 	return _actions[action_id] as BaseAction
 
 
+func _request_move_path(target: Vector3) -> Dictionary:
+	var actor: Node3D = get_parent() as Node3D
+	var terrain_manager: TerrainManager = get_terrain_manager()
+	if actor == null or terrain_manager == null:
+		return {}
+
+	return terrain_manager.request_path_world(actor.global_position, target)
+
+
 func _cache_economy() -> void:
 	var actor: Node3D = get_parent() as Node3D
 	if actor == null:
 		return
 
 	_economy = actor.get_tree().get_first_node_in_group("mission_economy") as MissionEconomy
+
+
+func _cache_terrain_manager() -> void:
+	var actor: Node3D = get_parent() as Node3D
+	if actor == null:
+		return
+
+	_terrain_manager = actor.get_tree().get_first_node_in_group("terrain_manager") as TerrainManager

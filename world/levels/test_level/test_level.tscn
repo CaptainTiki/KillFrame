@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dhuwytankgegy" path="res://world/levels/test_level/test_level.gd" id="1_testlv"]
 [ext_resource type="PackedScene" path="res://actors/units/engineer.tscn" id="2_eng"]
 [ext_resource type="Script" uid="uid://b178mq5amgpi7" path="res://world/terrain/terrain_manager/terrain_manager.gd" id="2_o077q"]
+[ext_resource type="Resource" uid="uid://8ct4gv37vu1" path="res://world/levels/test_level/test_level_terrain_data.tres" id="3_i01vb"]
 [ext_resource type="MeshLibrary" path="res://world/terrain/terrain_meshes/terrain_mesh_library.tres" id="3_ldvb8"]
 [ext_resource type="Script" uid="uid://r361xdoqiysw" path="res://world/missions/mission_controller.gd" id="3_mc"]
 [ext_resource type="PackedScene" uid="uid://d1ynwlxwvyj7c" path="res://actors/units/worker.tscn" id="4_wkr"]
@@ -46,6 +47,8 @@ script = ExtResource("1_testlv")
 
 [node name="TerrainManager" type="Node3D" parent="." unique_id=1865962447]
 script = ExtResource("2_o077q")
+baked_terrain_data_path = "res://world/levels/test_level/test_level_terrain_data.tres"
+baked_terrain_data = ExtResource("3_i01vb")
 
 [node name="GM_Terrain" type="GridMap" parent="TerrainManager" unique_id=176195393]
 mesh_library = ExtResource("3_ldvb8")

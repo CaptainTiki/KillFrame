@@ -3,6 +3,8 @@ class_name MoveAction
 
 var _has_target: bool = false
 var _target: Vector3 = Vector3.ZERO
+var _path_points: Array[Vector3] = []
+var _path_index: int = -1
 
 
 func get_action_id() -> String:
@@ -10,6 +12,25 @@ func get_action_id() -> String:
 
 
 func issue(payload: Dictionary = {}) -> void:
+	clear()
+
+	var path_points_variant: Variant = payload.get("path_points", null)
+	if path_points_variant is Array:
+		for point_variant: Variant in path_points_variant:
+			if point_variant is Vector3:
+				_path_points.append(point_variant as Vector3)
+
+	if _path_points.size() > 1:
+		_path_index = 1
+		_target = _path_points[_path_index]
+		_has_target = true
+		return
+	elif _path_points.size() == 1:
+		_path_index = 0
+		_target = _path_points[0]
+		_has_target = true
+		return
+
 	if not payload.has("target"):
 		return
 
@@ -20,6 +41,8 @@ func issue(payload: Dictionary = {}) -> void:
 func clear() -> void:
 	_has_target = false
 	_target = Vector3.ZERO
+	_path_points.clear()
+	_path_index = -1
 
 
 func process(delta: float) -> bool:
@@ -27,6 +50,11 @@ func process(delta: float) -> bool:
 		return false
 
 	if unit_actions.move_actor_towards(_target, delta):
+		if _path_index >= 0 and _path_index < _path_points.size() - 1:
+			_path_index += 1
+			_target = _path_points[_path_index]
+			return true
+
 		_has_target = false
 
 	return _has_target

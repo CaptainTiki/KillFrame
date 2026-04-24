@@ -13,7 +13,7 @@ func _ready() -> void:
 
 
 func _initialize_terrain() -> void:
-	terrain_manager.refresh_from_gridmap()
+	terrain_manager.refresh_runtime_data()
 
 
 func _initialize_camera() -> void:
